@@ -10,7 +10,7 @@ public class rtf {
 	private static String CSV_SEPARATOR = ";";
 	private File fileEntree;
 	private File fileSortie;
-	private String REGEX = "\\{[^\\;]+\\;\\}|\\\\[^ ]+[ ]+|\\{|\\}|[0-9a-fA-F]{127}|[0-9a-fA-F]{12}";
+	private String REGEX = "\\{[^\\;]+\\;\\}|\\\\[^ ]+[ ]+|\\{|\\}|^\\.*()|[0-9a-fA-F]{127}|[0-9a-fA-F]{12}";
 	private String REPLACE = "";
 
 	public rtf(String in, String out){
