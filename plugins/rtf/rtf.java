@@ -1,85 +1,50 @@
 import java.io.*;
 import java.lang.Object;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
-//\{\*?\\[^{}]+}|[{}]|\\\n?[A-Za-z]+\n?(?:-?\d+)?[ ]?
-
-//\{\*?\\[^{}]+(?:-?\d+)[ ]?
 
 public class rtf {
 	private static String nomFichier = "map.csv";
 	private static String destination = "final.txt";
 	private static String CSV_SEPARATOR = ";";
-	private static File fileEntree;
-	private static File fileSortie;
+	private File fileEntree;
+	private File fileSortie;
+	private String REGEX = "\\{[^\\;]+\\;\\}|\\\\[^ ]+[ ]+|\\{|\\}|[0-9a-fA-F]{127}|[0-9a-fA-F]{12}";
+	private String REPLACE = "";
 
-	public static HashMap<String, String> createMapFromCSV(File f)
-			throws IOException {
-
-		// open buffer of file f
-		BufferedReader br = new BufferedReader(new FileReader(f));
-
-		// creating string hashmap
-		HashMap<String, String> map = new HashMap<String, String>();
-
-		// get line from file f
-		String line = br.readLine();
-		String[] splitstr;
-
-		while (line != null) {
-			// split the csv with the separator and put it in the hashmap
-			splitstr = line.split(CSV_SEPARATOR, 2);
-			map.put(splitstr[0], splitstr[1]);
-			line = br.readLine();
-		}
-		return map;
+	public rtf(String in, String out){
+		this.fileEntree = new File(in);
+		this.fileSortie = new File(out);
+		
 	}
+	
 
-	public static void modifyFile(File source, File dest) {
-
-		// Declaration et ouverture des flux
-		File file = new File(nomFichier);// chemin vers le fichier
-		HashMap<String, String> map = null;
-
-		FileWriter f = null;
-		try {
-			// creation hashmap
-			map = createMapFromCSV(file);
-			BufferedReader brsource = new BufferedReader(new FileReader(source));
-			f = new FileWriter(fileSortie);
-
-			String line = brsource.readLine();
-			while (line != null) {
-				for (String key : map.keySet()) {
-					// brsource.readLine().replaceAll(key,map.get(key));
-					line = line.replaceAll(Pattern.quote(key),
-							Matcher.quoteReplacement(map.get(key)));
-				}
-
-				f.write(line);
-				line = brsource.readLine();
-
-			}
-
-			// f.write(map.get(brsource));
-			f.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
+	//I have no idea why it's here
 	private String cleanline(String line, String key, String value) {
 		return value;
 
 	}
+	
+	//replace line by line with the regular expression
+	public void test() throws IOException{
+		FileWriter fw = new FileWriter(this.fileSortie);
+		BufferedWriter bw = new BufferedWriter(fw);
+		FileReader fr = new FileReader(this.fileEntree);
+		BufferedReader br = new BufferedReader(fr);
+		String line = br.readLine();
+		while((line=br.readLine())!=null){
+			String newline = line.replaceAll(this.REGEX,this.REPLACE);
+			bw.write(newline);
+		}
+		br.close();
+		bw.close();
+		
+	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		fileEntree = new File("buffalo96.rtf");
-		fileSortie = new File(destination);
-		modifyFile(fileEntree, fileSortie);
+		rtf test = new rtf("buffalo96.rtf","test.rtf");
+		test.test();
 	}
 }
