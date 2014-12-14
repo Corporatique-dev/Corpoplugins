@@ -10,6 +10,7 @@ public class rtf {
 	private static String CSV_SEPARATOR = ";";
 	private File fileEntree;
 	private File fileSortie;
+	// Regex marche à moitié celui la marche mieux -> \{[^\;]+\;\}|\\[^ ]+[ ]+|\{|\}|^\\.*()$|[0-9a-fA-F]{127}|[0-9a-fA-F]{12} mais faut le changer pour java
 	private String REGEX = "\\{[^\\;]+\\;\\}|\\\\[^ ]+[ ]+|\\{|\\}|^\\.*()|[0-9a-fA-F]{127}|[0-9a-fA-F]{12}";
 	private String REPLACE = "";
 
