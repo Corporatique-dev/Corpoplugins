@@ -5,13 +5,11 @@ import java.util.regex.*;
 
 
 public class rtf {
-	private static String nomFichier = "map.csv";
 	private static String destination = "final.txt";
-	private static String CSV_SEPARATOR = ";";
 	private File fileEntree;
 	private File fileSortie;
-	// Regex marche à moitié celui la marche mieux -> \{[^\;]+\;\}|\\[^ ]+[ ]+|\{|\}|^\\.*()$|[0-9a-fA-F]{127}|[0-9a-fA-F]{12} mais faut le changer pour java
-	private String REGEX = "\\{[^\\;]+\\;\\}|\\\\[^ ]+[ ]+|\\{|\\}|^\\.*()|[0-9a-fA-F]{127}|[0-9a-fA-F]{12}";
+	private String REGEX = "\\{[^\\;]+\\;\\}|\\\\[^ ]+[ ]+|\\{|\\}|[0-9a-fA-F]{127}|[0-9a-fA-F]{12}";
+	private String REGEX2 = "^\\.*\\(\\)";
 	private String REPLACE = "";
 
 	public rtf(String in, String out){
@@ -20,12 +18,6 @@ public class rtf {
 		
 	}
 	
-
-	//I have no idea why it's here
-	private String cleanline(String line, String key, String value) {
-		return value;
-
-	}
 	
 	//replace line by line with the regular expression
 	public void test() throws IOException{
@@ -42,10 +34,27 @@ public class rtf {
 		bw.close();
 		
 	}
+	
+	public void test2() throws IOException{
+		FileWriter fw = new FileWriter(this.fileSortie);
+		BufferedWriter bw = new BufferedWriter(fw);
+		FileReader fr = new FileReader(this.fileEntree);
+		BufferedReader br = new BufferedReader(fr);
+		String line = br.readLine();
+		while((line=br.readLine())!=null){
+			String newline = line.replaceAll(this.REGEX2,this.REPLACE);
+			bw.write(newline);
+		}
+		br.close();
+		bw.close();
+		
+	}
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		rtf test = new rtf("buffalo96.rtf","test.rtf");
+		rtf test = new rtf("korea_final.rtf","test.rtf");
 		test.test();
+		rtf test2 = new rtf("test.rtf", "test2.rtf");
+		test2.test2();
 	}
 }
