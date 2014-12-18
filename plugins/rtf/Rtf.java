@@ -1,7 +1,7 @@
 import java.io.*;
 
 
-public class rtf {
+public class Rtf {
 	private File fileEntree;
 	private File fileSortie;
 
@@ -12,7 +12,7 @@ public class rtf {
 	private String REPLACE = "\n";
 	private String REPLACE2 = "";
 
-	public rtf(String in, String out){
+	public Rtf(String in, String out){
 		this.fileEntree = new File(in);
 		this.fileSortie = new File(out);
 		
@@ -39,7 +39,7 @@ public class rtf {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		rtf test = new rtf("buffalo96.rtf","test.rtf");
+		Rtf test = new Rtf("buffalo96.rtf","test.rtf");
 		test.test();
 	}
 }
