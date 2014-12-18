@@ -1,5 +1,7 @@
 package plugins;
 
+import net.xeoh.plugins.base.Plugin;
+
 import java.io.File;
 
 @Pluginspecs(
@@ -9,7 +11,7 @@ import java.io.File;
         author = "Fati CHEN",
         dependencies = "none",
         extensions = "none")
-public interface Corpoplugins {
+public interface Corpoplugins extends Plugin {
     File file_in;
     File file_out;
 
