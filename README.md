@@ -26,6 +26,8 @@ That's the second most important thing. it allows the plugin to identify himself
 #####`@PluginImplementation` annotation
 Part of the **[Jspf](https://code.google.com/p/jspf/)** framework, need to be present to have the plugin recognised by PluginManager
 
+##### Extraction options in `processExtraction(String [] options)` [Optional]
+This is not required but, if you want to add some option (example : ignore numerated lists) to you plugin.
 
 ##### Be under `plugins.plugin-name` package example `package plugins.doc` [Optional]
 This is not required, but recommended for cohesion reasons
