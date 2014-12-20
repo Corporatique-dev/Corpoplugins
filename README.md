@@ -8,6 +8,7 @@ Corporatique is using the **Jspf** framework to add, delete and update Corpoplug
 Therefore, there are some rules to follow when you create a plugin for it.
 
 The plugin need to :
+
 1. to implement the `Corpoplugins` interface.
 2. to have the `@Pluginspecs` annotation
 3. to have the `@PluginImplementation` annotation
