@@ -20,8 +20,8 @@ That's the second most important thing. it allows the plugin to identify himself
  * `String version` allows you to have a version control
  * `String description` contains a short description
  * `String author` for the rights
- * `String [ ] dependencies` String[] if the plugin need others plugins to be installed to work
- * `String [ ] extensions`  differents formats which can be processed by the plugin
+ * `String [ ] dependencies`  if the plugin need others plugins to be installed to work
+ * `String [ ] extensions`  different formats which can be processed by the plugin
 
 #####`@PluginImplementation` annotation
 Part of the **[Jspf](https://code.google.com/p/jspf/)** framework, need to be present to have the plugin recognised by PluginManager
