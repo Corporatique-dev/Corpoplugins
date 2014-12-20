@@ -5,10 +5,11 @@ List of plugins of Corporatique
 
 ## Plugin API
 Corporatique is using the **Jspf** framework to add, delete and update Corpoplugins.
+
 Therefore, there are some rules to follow when you create a plugin for it.
 
-You can see an example of a plugin [here](#example)
-
+You can see an example of a plugin [here](#example-of-doc-plugin)
+#### What needs to be present :
 ##### Implement the `Corpoplugins` interface.
 That's one of the most important things, if the principal class of the plugins doesn't implements it, the software will not recognise it.
 
