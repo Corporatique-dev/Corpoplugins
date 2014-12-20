@@ -9,10 +9,10 @@ Therefore, there are some rules to follow when you create a plugin for it.
 
 You can see an example of a plugin [here](#example)
 
-### Implement the `Corpoplugins` interface.
+##### Implement the `Corpoplugins` interface.
 That's one of the most important things, if the principal class of the plugins doesn't implements it, the software will not recognise it.
 
-### Have the `@Pluginspecs` annotation
+##### Have the `@Pluginspecs` annotation
 That's the second most important thing. it allows the plugin to identify himself to Corporatique/PluginManager, it contains
 
  * `name` which is the name of the plugin, each plugin need to have a unique name
@@ -22,16 +22,15 @@ That's the second most important thing. it allows the plugin to identify himself
  * `dependencies` String[] if the plugin need others plugins to be installed to work
  * `extensions` String[] differents formats which can be processed by the plugin
 
-###`@PluginImplementation` annotation
+#####`@PluginImplementation` annotation
 Part of the **[Jspf](https://code.google.com/p/jspf/)** framework, need to be present to have the plugin recognised by PluginManager
 
 
-### Be under `plugins.plugin-name` package example `package plugins.doc` [Optional]
+##### Be under `plugins.plugin-name` package example `package plugins.doc` [Optional]
 This is not required, but recommended for cohesion reasons
 
 
-### Example
-First of all, this is what it looks like, we will explain all the different parts later :
+## Example of doc plugin
 ```java
 package plugins.doc;
 
