@@ -16,12 +16,12 @@ That's one of the most important things, if the principal class of the plugins d
 ##### Have the `@Pluginspecs` annotation
 That's the second most important thing. it allows the plugin to identify himself to Corporatique/PluginManager, it contains
 
- * `name` which is the name of the plugin, each plugin need to have a unique name
- * `version` allows you to have a version control
- * `description` contains a short description
- * `author` for the rights
- * `dependencies` String[] if the plugin need others plugins to be installed to work
- * `extensions` String[] differents formats which can be processed by the plugin
+ * `String name` which is the name of the plugin, each plugin need to have a unique name
+ * `String version` allows you to have a version control
+ * `String description` contains a short description
+ * `String author` for the rights
+ * `String [ ] dependencies` String[] if the plugin need others plugins to be installed to work
+ * `String [ ] extensions`  differents formats which can be processed by the plugin
 
 #####`@PluginImplementation` annotation
 Part of the **[Jspf](https://code.google.com/p/jspf/)** framework, need to be present to have the plugin recognised by PluginManager
