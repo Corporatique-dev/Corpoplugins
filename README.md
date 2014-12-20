@@ -7,17 +7,27 @@ List of plugins of Corporatique
 Corporatique is using the **Jspf** framework to add, delete and update Corpoplugins.
 Therefore, there are some rules to follow when you create a plugin for it.
 
-The plugin need to :
+You can see an example of a plugin [here](#example)
 
-1. to implement the `Corpoplugins` interface.
-2. to have the `@Pluginspecs` annotation
-3. to have the `@PluginImplementation` annotation
-4. to be under `plugins.plugin-name` package ex `plugins.doc`
+### Implement the `Corpoplugins` interface.
+That's one of the most important things, if the principal class of the plugins doesn't implements it, the software will not recognise it.
+
+### Have the `@Pluginspecs` annotation
+That's the second most important thing. it allows the plugin to identify himself to Corporatique/PluginManager, it contains
+
+ * `name` which is the name of the plugin, each plugin need to have a unique name
+ * `version` allows you to have a version control
+ * `description` contains a short description
+ * `author` for the rights
+ * `dependencies` String[] if the plugin need others plugins to be installed to work
+ * `extensions` String[] differents formats which can be processed by the plugin
+
+###`@PluginImplementation` annotation
+Part of the **[Jspf](https://code.google.com/p/jspf/)** framework, need to be present to have the plugin recognised by PluginManager
 
 
-
-You can see the entire code [here](#Example)
-
+### Be under `plugins.plugin-name` package example `package plugins.doc` [Optional]
+This is not required, but recommended for cohesion reasons
 
 
 ### Example
