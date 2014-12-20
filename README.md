@@ -4,13 +4,23 @@ Corporatique_plugins
 List of plugins of Corporatique
 
 ## Plugin API
-Corporatique is using the **jspf** framework to add, delete and update Corpoplugins.
+Corporatique is using the **Jspf** framework to add, delete and update Corpoplugins.
 Therefore, there are some rules to follow when you create a plugin for it.
 
-To make it easier we will use an example of plugin. Let's use the .doc format processor :
+The plugin need to :
+1. to implement the `Corpoplugins` interface.
+2. to have the `@Pluginspecs` annotation
+3. to have the `@PluginImplementation` annotation
+4. to be under `plugins.plugin-name` package ex `plugins.doc`
 
-### Exemple
-First of all, this is what it looks like, we will explain all the differents part later :
+
+
+You can see the entire code [here](#Example)
+
+
+
+### Example
+First of all, this is what it looks like, we will explain all the different parts later :
 ```java
 package plugins.doc;
 
@@ -18,12 +28,7 @@ import net.xeoh.plugins.base.annotations.PluginImplementation;
 import plugins.Corpoplugins;
 import plugins.Pluginspecs;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*
 
 @Pluginspecs(
         name = "Doc",
@@ -39,61 +44,17 @@ public class Doc implements Corpoplugins {
     private File in;
     private File out;
 
+    public Doc(){}
+
     @Override
     public void Load(File file_in, File file_out) {
         this.in = new File(in.getAbsolutePath());
         this.out = new File(out.getAbsolutePath());
-
     }
 
     @Override
     public void processExtraction(String[] options) throws IOException {
-        // TODO Auto-generated method stub
-        FileReader fis = new FileReader(this.in);
-        BufferedReader br = new BufferedReader(fis, BUF_SIZE);
-        FileWriter fw = new FileWriter(this.out);
-        BufferedWriter bw = new BufferedWriter(fw);
-        int nread;
-        char[] chars = new char[BUF_SIZE];
-        boolean text = false;
-        boolean endOfText = false;
-        boolean header = true;
-        boolean firstLine = false; //Est ce qu'on a d�j� ajout� la premi�re ligne
-        while ((nread = br.read(chars, 0, BUF_SIZE)) > 0) {
-            StringBuilder strb = new StringBuilder();
-            StringBuilder strb_header = new StringBuilder();
-            for (int i = 0; i < nread; i++) {
-                if (!text && chars[i] == 13) { //On cherche le premier CR (mais on loupe la premi�re ligne du coup). Mise en place de bytes_header pour retrouver la ligne 1
-                    text = true;
-                }
-                if (text && !endOfText && chars[i] == 3) { //On cherche END OF TEXT pour savoir quand arreter
-                    endOfText = true;
-                }
-                if (text && !endOfText) {
-                    //System.out.print(chars[i]);
-                    header = false;
-                    if (!Character.isISOControl(chars[i]) || Character.isWhitespace(chars[i])) { //On ajoute pas les caract�res de controles
-                        strb.append(chars[i]);
-                    }
-                }
-                if (header) {
-                    strb_header.append(chars[i]);
-                }
-            }
-
-
-            if (!header && !firstLine) {
-                String head = strb_header.toString();
-                int n = head.lastIndexOf('\0'); // On cherche le dernier nul du header, apr�s cela nous avons la premi�re ligne de texte
-                String firstL = head.substring(n + 1); //+1 car on ne veut pas le nul
-                bw.write(firstL);
-                firstLine = true;
-            }
-            bw.write(strb.toString());
-        }
-
-        br.close();
-        bw.close();
+        {...}
     }
 
     @Override
@@ -116,7 +77,6 @@ public class Doc implements Corpoplugins {
     @Override
     public void setFileOut(File file_out) {
         this.out = file_out;
-
     }
 }
 ```
