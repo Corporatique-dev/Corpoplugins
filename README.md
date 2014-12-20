@@ -59,35 +59,19 @@ public class Doc implements Corpoplugins {
 
     public Doc(){}
 
-    @Override
     public void Load(File file_in, File file_out) {
         this.in = new File(in.getAbsolutePath());
         this.out = new File(out.getAbsolutePath());
     }
 
-    @Override
     public void processExtraction(String[] options) throws IOException {
         {...}
     }
 
-    @Override
-    public File getFileIn() {
-        // TODO Auto-generated method stub
-        return this.in;
-    }
-
-    @Override
-    public File getFileOut() {
-        return this.out;
-    }
-
-    @Override
     public void setFileIn(File file_in) {
         this.in = file_in;
-
     }
 
-    @Override
     public void setFileOut(File file_out) {
         this.out = file_out;
     }
