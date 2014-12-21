@@ -29,7 +29,7 @@ Part of the **[Jspf](https://code.google.com/p/jspf/)** framework, need to be pr
 ##### Extraction options in `processExtraction(String [] options)` [Optional]
 This is not required but, if you want to add some option (example : ignore numerated lists) to you plugin.
 
-##### Be under `plugins.plugin-name` package example `package plugins.doc` [Optional]
+##### Be under `plugins.plugin-name` package; example `package plugins.doc` [Optional]
 This is not required, but recommended for cohesion reasons
 
 
