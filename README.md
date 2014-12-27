@@ -49,7 +49,7 @@ import java.io.*
         description = "Extracts text from .doc Files",
         author = "Maxime CHAPUIS",
         dependencies = "",
-        extensions = "")
+        extensions = "doc")
 @PluginImplementation
 public class Doc implements Corpoplugins {
 
