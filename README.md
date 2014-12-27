@@ -48,8 +48,8 @@ import java.io.*
         version = "1.0.0",
         description = "Extracts text from .doc Files",
         author = "Maxime CHAPUIS",
-        dependencies = "none",
-        extensions = "none")
+        dependencies = "",
+        extensions = "")
 @PluginImplementation
 public class Doc implements Corpoplugins {
 
