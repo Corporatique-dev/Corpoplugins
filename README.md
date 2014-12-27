@@ -60,8 +60,8 @@ public class Doc implements Corpoplugins {
     public Doc(){}
 
     public void Load(File file_in, File file_out) {
-        this.in = file_in;
-        this.out = file_out;
+        this.setFileIn(file_in);
+        this.setFileOut(file_out);
     }
 
     public void processExtraction(String[] options) throws IOException {
