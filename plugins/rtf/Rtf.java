@@ -14,7 +14,7 @@ import org.apache.commons.io.FileUtils;
  */
 
 
-public class rtf {
+public class Rtf {
     private File fileEntree;
     private File fileSortie;
 
