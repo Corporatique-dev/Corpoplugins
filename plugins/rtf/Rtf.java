@@ -1,18 +1,34 @@
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 
-public class Rtf {
+
+/**
+ * @author Loris NORSIC
+ * This plugin enables to convert a .rtf file in .txt file 
+ * 
+ *
+ */
+
+
+public class rtf {
     private File fileEntree;
     private File fileSortie;
 
-    private String REGEX = "\\\\(par)\\W|\\\\(pard)";
-    private String REGEX2 = "\\{[^\\;]+\\;\\}|\\\\[^ ]+[ ]+|\\{|\\}|[0-9a-fA-F]{127}|[0-9a-fA-F]{12}";
-    private String REGEX3 = "^\\\\.*;\\\\|\\\\[^ ]+[\\w+\\d*]";
-    private String REGEX4 = ".*\\;.*[a-zA-a]*\\;";
-    private String REPLACE = "\n";
-    private String REPLACE2 = "";
+    private String REGEX = Messages.getString("rtf.0");// //$NON-NLS-1$
+    private String REGEX2 = Messages.getString("rtf.1"); //$NON-NLS-1$
+    private String REGEX3 = Messages.getString("rtf.2"); //$NON-NLS-1$
+    private String REGEX4 = Messages.getString("rtf.3"); //$NON-NLS-1$
+    private String REGEX5 = Messages.getString("rtf.4"); //$NON-NLS-1$
+    private String REGEX6 = Messages.getString("rtf.5"); //$NON-NLS-1$
+    private String REPLACE = Messages.getString("rtf.6"); //$NON-NLS-1$
+    private String REPLACE2 = Messages.getString("rtf.7"); //$NON-NLS-1$
+    private String REPLACE3 = Messages.getString("rtf.8"); //$NON-NLS-1$
 
-    public Rtf(String in, String out) {
+    public rtf(String in, String out) {
         this.fileEntree = new File(in);
         this.fileSortie = new File(out);
 
@@ -20,26 +36,28 @@ public class Rtf {
 
     //replace line by line with the regular expression
     public void test() throws IOException {
-        FileWriter fw = new FileWriter(this.fileSortie);
-        BufferedWriter bw = new BufferedWriter(fw);
-        FileReader fr = new FileReader(this.fileEntree);
-        BufferedReader br = new BufferedReader(fr);
-        String line;
-        while ((line = br.readLine()) != null) {
-            String newline = line.replaceAll(this.REGEX, this.REPLACE);
-            newline = newline.replaceAll(this.REGEX2, this.REPLACE2);
+    	
+    	String airlines = FileUtils.readFileToString(fileEntree); //File is transformed in String
+    	String text = airlines.replaceAll(this.REGEX, this.REPLACE2); //head of file is delete
+    	String tab[] = text.split(Messages.getString("rtf.9")); //$NON-NLS-1$
+    	
+    	
+    	FileUtils.deleteQuietly(fileSortie);//Delete the file with the same name
+        for (int i = 0; i < tab.length; i++) { //REGEX used for each line of String tab[]
+            String newline = tab[i].replaceAll(this.REGEX2, this.REPLACE);
             newline = newline.replaceAll(this.REGEX3, this.REPLACE2);
             newline = newline.replaceAll(this.REGEX4, this.REPLACE2);
-            bw.write(newline);
+            newline = newline.replaceAll(this.REGEX5, this.REPLACE3);
+            newline = newline.replaceAll(this.REGEX6, this.REPLACE3);
+            tab[i] = newline;
+            FileUtils.write(fileSortie, tab[i], true);
         }
-        br.close();
-        bw.close();
     }
 
 
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub
-        Rtf test = new Rtf("buffalo96.rtf", "test.rtf");
+        rtf test = new rtf(Messages.getString("rtf.10"), Messages.getString("rtf.11")); //$NON-NLS-1$ //$NON-NLS-2$
         test.test();
     }
 }
