@@ -4,17 +4,13 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-
-
 /**
  * @author Loris NORSIC
  * This plugin enables to convert a .rtf file in .txt file 
  * 
  *
  */
-
-
-public class Rtf {
+public class Rtf implements Corpoplugins{
     private File fileEntree;
     private File fileSortie;
 
@@ -28,12 +24,27 @@ public class Rtf {
     private String REPLACE2 = Messages.getString("rtf.7"); //$NON-NLS-1$
     private String REPLACE3 = Messages.getString("rtf.8"); //$NON-NLS-1$
 
-    public rtf(String in, String out) {
+    public Rtf(String in, String out) {
         this.fileEntree = new File(in);
         this.fileSortie = new File(out);
-
+    }
+    
+    public void Load(File file_in, File file_out){
+    	
+    }
+    
+    public void processExtraction(String[] options) throws IOException{
+    	
+    }
+    
+    void setFileIn(File file_in){
+    	
     }
 
+    void setFileOut(File file_out){
+    	
+    }
+    
     //replace line by line with the regular expression
     public void test() throws IOException {
     	
