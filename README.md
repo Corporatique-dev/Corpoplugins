@@ -1,27 +1,27 @@
 Corporatique plugins
 =======
 
-List of plugins of Corporatique
+List of plugins of [Corporatique]
 
 ## Plugin API
 
-Corporatique framework uses only two methods to load the files and execute the Corpoplugin :
+[Corporatique] framework uses only two methods to load the files and execute the Corpoplugin :
 
   * Will initialize the plugin with an empty constructor (ex:`Plugin()`)
   * `public void Load(File file_in, File file_out)` which will load files to extract and the extraction destination. The input and output are setted by the framework to avoid any problems with a plugin on extraction.
   * `public void processExtraction(String[] options)` will be executed right after `Load(File file_in, File file_out)` to process the extraction. If specified, it will send additionals options in a `processExtraction()`, these are the options relative to the plugin.
 
-Corporatique is using the **[Jspf]** framework to add, delete and update Corpoplugins.
+[Corporatique] is using the **[Jspf]** framework to add, delete and update Corpoplugins.
 
 Therefore, there are some rules to follow when you create a plugin for it.
 
 You can see an example of a plugin [here](#example-of-doc-plugin)
 #### What needs to be present :
-##### Implement the `Corpoplugins` interface.
-That's one of the most important things, if the principal class of the plugins doesn't implements it, the software will not recognise it.
+##### Implement the [`Corpoplugins`] interface.
+If the principal class of the plugins doesn't implements it, the application will not recognise it.
 
-##### Have the `@Pluginspecs` annotation
-That's the second most important thing. it allows the plugin to identify himself to Corporatique/PluginManager, it contains
+##### Have the [`@Pluginspecs`] annotation
+It allows the plugin to identify himself to Corporatique/PluginManager, it contains
 
  * `String name` which is the name of the plugin, each plugin need to have a unique name
  * `String version` allows you to have a version control
@@ -85,3 +85,6 @@ public class Doc implements Corpoplugins {
 }
 ```
 [jspf]:https://code.google.com/p/jspf/
+[`Corpoplugins`]:./plugins/Corpoplugins.java
+[corporatique]: https://github.com/Corporatique-dev/Corporatique
+[`@Pluginspecs`]:./plugins/Pluginspecs.java
