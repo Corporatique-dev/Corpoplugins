@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * Interface which <b>must</b> be implemented by all Corpoplugins.
+ * The framework uses this interface to interface to interact with Corpoplugins. 
+ * 
  * @author Fati CHEN
+ * @version 1.0.0
  */
 @Pluginspecs(
         name = "Plugin",
@@ -28,18 +32,10 @@ public interface Corpoplugins extends Plugin {
     public void Load(File file_in, File file_out);
 
     /**
-     * Process the text extraction to file_out with options if necessary
+     * Process the text extraction to file_out with options if necessary.
+     * The options must be filtered by the Corpoplugins
      *
      * @param options eventuals options of the plugin
      */
     public void processExtraction(String[] options) throws IOException;
-
-    /*-------------------
-     * Getters - Setters - toString
-     */
-    void setFileIn(File file_in);
-
-    void setFileOut(File file_out);
-
-    public String toString();
 }
