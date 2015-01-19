@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
+import net.xeoh.plugins.base.annotations.PluginImplementation;
+import plugins.Corpoplugins;
+import plugins.Pluginspecs;
 
 import org.apache.commons.io.FileUtils;
 
@@ -10,9 +13,18 @@ import org.apache.commons.io.FileUtils;
  * 
  *
  */
+ @Pluginspecs(
+        name = "Rtf",
+        version = "1.0.0",
+        description = "Extracts text from .rtf Files",
+        author = "Loris Norsic",
+        dependencies = "",
+        extensions = "rtf")
+@PluginImplementation
 public class Rtf implements Corpoplugins{
-    private File fileEntree;
-    private File fileSortie;
+    protected static int BUF_SIZE = 4096;
+    private File in;
+    private File out;
 
     private String REGEX = Messages.getString("rtf.0");// //$NON-NLS-1$
     private String REGEX2 = Messages.getString("rtf.1"); //$NON-NLS-1$
@@ -23,37 +35,20 @@ public class Rtf implements Corpoplugins{
     private String REPLACE = Messages.getString("rtf.6"); //$NON-NLS-1$
     private String REPLACE2 = Messages.getString("rtf.7"); //$NON-NLS-1$
     private String REPLACE3 = Messages.getString("rtf.8"); //$NON-NLS-1$
-
-    public Rtf(String in, String out) {
-        this.fileEntree = new File(in);
-        this.fileSortie = new File(out);
-    }
     
     public void Load(File file_in, File file_out){
-    	
+        this.setFileIn(file_in);
+        this.setFileOut(file_out);
     }
     
     public void processExtraction(String[] options) throws IOException{
-    	
-    }
-    
-    void setFileIn(File file_in){
-    	
-    }
-
-    void setFileOut(File file_out){
-    	
-    }
-    
-    //replace line by line with the regular expression
-    public void test() throws IOException {
-    	
-    	String airlines = FileUtils.readFileToString(fileEntree); //File is transformed in String
+    	    	
+    	String airlines = FileUtils.readFileToString(in); //File is transformed in String
     	String text = airlines.replaceAll(this.REGEX, this.REPLACE2); //head of file is delete
     	String tab[] = text.split(Messages.getString("rtf.9")); //$NON-NLS-1$
     	
     	
-    	FileUtils.deleteQuietly(fileSortie);//Delete the file with the same name
+    	FileUtils.deleteQuietly(out);//Delete the file with the same name
         for (int i = 0; i < tab.length; i++) { //REGEX used for each line of String tab[]
             String newline = tab[i].replaceAll(this.REGEX2, this.REPLACE);
             newline = newline.replaceAll(this.REGEX3, this.REPLACE2);
@@ -61,14 +56,15 @@ public class Rtf implements Corpoplugins{
             newline = newline.replaceAll(this.REGEX5, this.REPLACE3);
             newline = newline.replaceAll(this.REGEX6, this.REPLACE3);
             tab[i] = newline;
-            FileUtils.write(fileSortie, tab[i], true);
+            FileUtils.write(out, tab[i], true);
         }
     }
+    
+    void setFileIn(File file_in){
+    	this.in = file_in;
+    }
 
-
-    public static void main(String[] args) throws IOException {
-        // TODO Auto-generated method stub
-        rtf test = new rtf(Messages.getString("rtf.10"), Messages.getString("rtf.11")); //$NON-NLS-1$ //$NON-NLS-2$
-        test.test();
+    void setFileOut(File file_out){
+    	this.out = file_out;
     }
 }
