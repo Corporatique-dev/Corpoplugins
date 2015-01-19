@@ -4,7 +4,14 @@ Corporatique plugins
 List of plugins of Corporatique
 
 ## Plugin API
-Corporatique is using the **Jspf** framework to add, delete and update Corpoplugins.
+
+Corporatique framework uses only two methods to load the files and execute the Corpoplugin :
+
+  * Will initialize the plugin with an empty constructor (ex:`Plugin()`)
+  *`public void Load(File file_in, File file_out)` which will load files to extract and the extraction destination. The input and output are setted by the framework to avoid any problems with a plugin on extraction.
+  *`public void processExtraction(String[] options)` will be executed right after `Load(File file_in, File file_out)` to process the extraction. If specified, it will send additionals options in a `processExtraction()`, these are the options relative to the plugin.
+
+Corporatique is using the **[Jspf]** framework to add, delete and update Corpoplugins.
 
 Therefore, there are some rules to follow when you create a plugin for it.
 
@@ -24,7 +31,7 @@ That's the second most important thing. it allows the plugin to identify himself
  * `String [ ] extensions`  different formats which can be processed by the plugin
 
 #####`@PluginImplementation` annotation
-Part of the **[Jspf](https://code.google.com/p/jspf/)** framework, need to be present to have the plugin recognised by PluginManager
+Part of the **[Jspf]** framework, need to be present to have the plugin recognised by PluginManager
 
 ##### Extraction options in `processExtraction(String [] options)` [Optional]
 This is not required but, if you want to add some option (example : ignore numerated lists) to you plugin.
@@ -64,7 +71,7 @@ public class Doc implements Corpoplugins {
         this.setFileOut(file_out);
     }
 
-    public void processExtraction(String[] options) throws IOException {
+    public void processExtraction(String[] options){
         {...}
     }
 
@@ -77,3 +84,4 @@ public class Doc implements Corpoplugins {
     }
 }
 ```
+[jspf]:https://code.google.com/p/jspf/
