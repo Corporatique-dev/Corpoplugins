@@ -8,8 +8,8 @@ List of plugins of Corporatique
 Corporatique framework uses only two methods to load the files and execute the Corpoplugin :
 
   * Will initialize the plugin with an empty constructor (ex:`Plugin()`)
-  *`public void Load(File file_in, File file_out)` which will load files to extract and the extraction destination. The input and output are setted by the framework to avoid any problems with a plugin on extraction.
-  *`public void processExtraction(String[] options)` will be executed right after `Load(File file_in, File file_out)` to process the extraction. If specified, it will send additionals options in a `processExtraction()`, these are the options relative to the plugin.
+  * `public void Load(File file_in, File file_out)` which will load files to extract and the extraction destination. The input and output are setted by the framework to avoid any problems with a plugin on extraction.
+  * `public void processExtraction(String[] options)` will be executed right after `Load(File file_in, File file_out)` to process the extraction. If specified, it will send additionals options in a `processExtraction()`, these are the options relative to the plugin.
 
 Corporatique is using the **[Jspf]** framework to add, delete and update Corpoplugins.
 
