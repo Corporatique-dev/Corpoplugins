@@ -39,6 +39,9 @@ This is not required but, if you want to add some option (example : ignore numer
 ##### Be under `plugins.plugin-name` package; example `package plugins.doc` [Optional]
 This is not required, but recommended for cohesion reasons
 
+##### Dependencies
+If your plugin uses others plugins, (specify the plugin name in dependencies to avoid any errors), use `Execute.thisPlugin(String plugin_name)` to get the Corpoplugin object (`public static Corpoplugins`).
+
 
 ## Example of doc plugin
 ```java
