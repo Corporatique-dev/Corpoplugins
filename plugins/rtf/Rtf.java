@@ -10,10 +10,10 @@ import org.apache.commons.io.FileUtils;
 /**
  * @author Loris NORSIC
  * This plugin enables to convert a .rtf file in .txt file 
- * 
  *
  */
- @Pluginspecs(
+
+@Pluginspecs(
         name = "Rtf",
         version = "1.0.0",
         description = "Extracts text from .rtf Files",
@@ -21,11 +21,21 @@ import org.apache.commons.io.FileUtils;
         dependencies = "",
         extensions = "rtf")
 @PluginImplementation
+
+/**
+* @author Kaforo
+*This class implements Corpoplugins and uses theses methods
+*/
 public class Rtf implements Corpoplugins{
     protected static int BUF_SIZE = 4096;
     private File in;
     private File out;
-
+    
+    
+/**
+ * @author Kaforo
+ * The strings REGEX contain the regulars expressions and the Strings REPLACE contain the Strings which replace the regex
+ */
     private String REGEX = Messages.getString("rtf.0");// //$NON-NLS-1$
     private String REGEX2 = Messages.getString("rtf.1"); //$NON-NLS-1$
     private String REGEX3 = Messages.getString("rtf.2"); //$NON-NLS-1$
@@ -41,6 +51,10 @@ public class Rtf implements Corpoplugins{
         this.setFileOut(file_out);
     }
     
+    /**
+    * @author Kaforo
+    *This method recover the file in and the text in this file is transformed in String. The String is treated by regex.
+    */
     public void processExtraction(String[] options) throws IOException{
     	    	
     	String airlines = FileUtils.readFileToString(in); //File is transformed in String
