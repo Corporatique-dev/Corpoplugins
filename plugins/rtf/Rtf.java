@@ -23,7 +23,7 @@ import org.apache.commons.io.FileUtils;
 @PluginImplementation
 
 /**
-* @author Kaforo
+* @author Loris Norsic
 *This class implements Corpoplugins and uses theses methods
 */
 public class Rtf implements Corpoplugins{
@@ -33,7 +33,7 @@ public class Rtf implements Corpoplugins{
     
     
 /**
- * @author Kaforo
+ * @author Loris Norsic
  * The strings REGEX contain the regulars expressions and the Strings REPLACE contain the Strings which replace the regex
  */
     private String REGEX = Messages.getString("rtf.0");// //$NON-NLS-1$
@@ -52,7 +52,7 @@ public class Rtf implements Corpoplugins{
     }
     
     /**
-    * @author Kaforo
+    * @author Loris Norsic
     *This method recover the file in and the text in this file is transformed in String. The String is treated by regex.
     */
     public void processExtraction(String[] options) throws IOException{
