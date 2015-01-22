@@ -3,6 +3,8 @@ Corporatique plugins
 
 List of plugins of [Corporatique]
 
+Full documentation here : [Javadoc](http://corporatique-dev.github.io/Corporatique/)
+
 ## Plugin API
 
 [Corporatique] framework uses only two methods to load the files and execute the Corpoplugin :
